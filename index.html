@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>スケジュール管理システム</title>
+<meta charset="utf-8">
+<meta name="description" content="スケジュール管理システム">
+<meta name="author" content="Chintai Kanri Developer">
+<link rel="stylesheet" href="rsv.css">
+<link rel="stylesheet" href="/CSS/jquery-ui.css" >
+<script src="/JS/jquery-1.9.1.min.js"></script>
+<script src="/JS/jquery.blockUI.js"></script>
+<script src="/JS/jquery-ui.min.js"></script>
+<script src="/JS/jquery.ui.datepicker-ja.min.js"></script>
+<script src="./rsv.js"></script>
+</head>
+<body>
+	<header>
+		<div class="headerdiv ">
+			<img src="/Images/2nd/top_logo.gif" class="titleimg">
+			<div class="title">スケジュール管理</div>
+		</div>
+		<div class="bar"></div>
+	</header>
+	<main>
+		<div class="map">
+		</div>
+		<div class="maindiv ">
+			<div class="navi">
+				<label for="basho">場所：</label>
+				<select id="basho" disabled>
+					<option value="4">選択</option>
+				</select>
+				<input type="button" id="today" title="今日" value="今日">
+				<input type="button" id="prev_day" title="前日（週）" value="＜">
+				<input type="text" id="rsv_day">
+				<input type="button" id="next_day" title="翌日（週）" value="＞">
+				<input type="button" id="newreg" title="新規登録" value="新規登録">
+				<!--
+				<span class="map" title="レイアウト">テーブルレイアウトはこちら</span>
+				-->	
+				<div class="DayWeek">
+					<input type="radio" value="0" name="disp_dayweek" id="dispday" checked><!--
+				--><label for="dispday">日</label><!--
+				--><input type="radio" value="1" name="disp_dayweek" id="dispweek"><!--
+				--><label for="dispweek">週</label>
+				</div>
+			</div>
+			<table id="room">
+				<thead>
+					<tr>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<table id="rsvdata">
+				<thead>
+					<tr>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</main>
+	<footer>
+		<div class="bar"></div>
+		<div class="footerdiv">
+		</div>
+	</footer>
+<!-- 会議室登録ダイアログ  -->
+<div id="RegKaigiForm" title="スケジュール登録">
+	<table id="kaigi_table" class="simple_table">
+		<thead>
+			<tr>
+				<th>Ｎｏ</th>
+				<th>社員名</th>
+				<th>削除</th>
+			</tr>
+		</thead>    
+		<tbody id="kaigi_table_body">
+		</tbody>
+	</table>
+</div>
+<!-- データ登録ダイアログ  -->
+<div id="RsvForm" title="スケジュール予約">
+	<table id="rsv_table" class="simple_table">
+		<tr>
+			<th>社員名</th>
+			<td><select id="kaigi"></select></td>
+		</tr>
+		<tr>
+			<th>登録日</th>
+			<td><input type="text" id="rday"></td>
+		</tr>
+		<tr>
+			<th>時間</th>
+			<td><select id="stime"></select> ～ <select id="etime"></select></td>
+		</tr>
+		<tr>
+			<th>コメント</th>
+			<td><textarea id="cmt" length="100"></textarea></td>
+		</tr>
+		<tr>
+			<th>登録者</th>
+			<td id="shain_nm"></td>
+		</tr>
+		<tr>
+			<th>登録端末</th>
+			<td id="ip"></td>
+		</tr>
+	</table>
+	<p class="info">※登録者又は登録端末のみで修正・削除が行えます。</p>
+	<input type="hidden" id="data_no">
+	<input type="hidden" id="wtime">
+</div>
+<!-- ログインダイアログ  -->
+<div id="LoginForm" title="ログイン">
+	<table id="login_table" class="simple_table">
+		<tr>
+			<th>社員CD</th>
+			<td><input type="text" id="l_shain_cd"><input type="button" id="query_shain" value="確認"></td>
+		</tr>
+		<tr>
+			<th>社員名</th>
+			<td id="l_shain_nm"></td>
+		</tr>
+	</table>
+	<p class="info">・社員ＣＤを入力して確認ボタンをクリック<br>・氏名を確認後ＯＫをクリックして下さい</p>
+</div>
+</body>
+</html>
